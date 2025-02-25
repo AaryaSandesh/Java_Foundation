@@ -28,4 +28,4 @@ public class BinarySearchFloor {
         }
         System.out.print(ans);
     }
-}
+
