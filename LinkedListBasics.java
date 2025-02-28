@@ -1,6 +1,7 @@
+import java.util.Scanner;
+
 public class LinkedListBasics {
-     
-	public static class Node{
+   public static class Node{
 		int val;
 		Node next;
 		Node(int x){
@@ -19,11 +20,25 @@ public class LinkedListBasics {
 		n3.next=n4;
 		n4.next=n5;
 		Node head=n1;
-//	   insertFirst(head,10);
-//		print(head);
-//		insertLast(head,60);
-		insert(head,3,90);
+		Scanner scn=new Scanner(System.in);
+		 
+		int k=scn.nextInt();
+//	   head=insertFirst(head,10);
+//		   
+//		head=insertLast(null,k);
+		head=insert(head,k,90);
+		 print(head);
+		
 	}
+	 public static int size(Node head) {
+		 int count=0;
+		 Node temp=head;
+		 while(temp!=null) {
+			 count++;
+			 temp=temp.next;
+		 }
+		 return count;
+	 }
 	 public static void print(Node head) {
 		 Node temp=head;
 		 while(temp!=null) {
@@ -31,31 +46,48 @@ public class LinkedListBasics {
 			 temp=temp.next;
 		 }
 	 }
-	 public static void insertFirst(Node head,int val) {
+	 public static Node insertFirst(Node head,int val) {
 		 Node n1=new Node(val);
 		 n1.next=head;
 		 head=n1;
-		 print(head);
+		  return n1;
 	 }
-	 public static void insertLast(Node head,int val) {
+	 public static Node insertLast(Node head,int val) {
+		 
+		 if (head==null) {
+			 Node n1=new Node(val);
+			 return n1;
+			  		 }
+		 else {
 		 Node n1=new Node(val);
+
 		 Node temp=head;
 		 while(temp.next!=null) {
 			 temp=temp.next;
 		 }
 		 temp.next=n1;
-		 print(head);
+		
+		 }
+		 return head;
 	 }
-	 public static void insert(Node head,int k,int val) {
+	 public static Node insert(Node head,int k,int val) {
+		 if (head==null || k==0) {
+			  return insertFirst(head,val);
+			  		 } 
+		 
+		 else if(k>=size(head)) {
+			 return insertLast(head,val);
+		 }
+	 else {
 		 Node n1=new Node(val);
 		 Node temp=head;
-		 for(int i=0;i<=k-1;i++) {
+		 for(int i=0;i<k-1;i++) {
 			 temp=temp.next;
 		 }
 		 Node temp1=temp.next;
 		 temp.next=n1;
 		 n1.next=temp1;
-		 print(head);
 	 }
+		  return head;
+	 }  
 }
-
